@@ -4,16 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "101bc733e3126e2e",
+        "id": "cee0ad4791246e60",
         "type": "tabs",
         "children": [
           {
-            "id": "e2ff79c5bb5f5a30",
+            "id": "c854e5ef1564e014",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "share/Pasted image 20240130160226.jpg"
+                "file": "Arbor Interview/RFC JSON Forms.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "share/Pasted image 20240130160226.jpg",
+                "file": "Arbor Interview/RFC State Management.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "share/Pasted image 20240130160226.jpg",
+                "file": "Arbor Interview/RFC State Management.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "share/Pasted image 20240130160226.jpg"
+                "file": "Arbor Interview/RFC State Management.md"
               }
             }
           }
@@ -145,15 +147,56 @@
       "webpage-html-export:Export Vault to HTML": false
     }
   },
-  "active": "e2ff79c5bb5f5a30",
+  "floating": {
+    "id": "89dc25c4125c8bac",
+    "type": "floating",
+    "children": [
+      {
+        "id": "ed85a604f23ba3f5",
+        "type": "window",
+        "children": [
+          {
+            "id": "f455b54f95bbe930",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "cf934b6faa7611ae",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "Arbor Interview/RFC State Management.md",
+                    "mode": "preview",
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 830,
+        "y": 915,
+        "width": 800,
+        "height": 400,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "cf934b6faa7611ae",
   "lastOpenFiles": [
+    "Arbor Interview/RFC JSON Forms.md",
+    "share/arbor",
+    "Arbor Interview/RFC State Management.md",
+    "share/Pasted image 20240130160226.jpg",
+    "Arbor Interview",
     "Test Note.md",
     "drawio/testdiagram.drawio.png",
     "drawio/testdiagram.crswap",
     "drawio/testdiagram",
     "drawio",
     "share/Test Note.html",
-    "share/Pasted image 20240130160226.jpg",
     "share",
     "Pasted image 20240130160226.jpg"
   ]
