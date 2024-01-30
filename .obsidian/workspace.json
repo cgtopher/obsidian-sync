@@ -11,11 +11,9 @@
             "id": "e2ff79c5bb5f5a30",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Test Note.md",
-                "mode": "source",
-                "source": false
+                "file": "share/Pasted image 20240130160226.jpg"
               }
             }
           }
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Test Note.md",
+                "file": "share/Pasted image 20240130160226.jpg",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Test Note.md",
+                "file": "share/Pasted image 20240130160226.jpg",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Test Note.md"
+                "file": "share/Pasted image 20240130160226.jpg"
               }
             }
           }
@@ -149,10 +147,14 @@
   },
   "active": "e2ff79c5bb5f5a30",
   "lastOpenFiles": [
+    "Test Note.md",
+    "drawio/testdiagram.drawio.png",
+    "drawio/testdiagram.crswap",
+    "drawio/testdiagram",
+    "drawio",
     "share/Test Note.html",
     "share/Pasted image 20240130160226.jpg",
     "share",
-    "Pasted image 20240130160226.jpg",
-    "Test Note.md"
+    "Pasted image 20240130160226.jpg"
   ]
 }
