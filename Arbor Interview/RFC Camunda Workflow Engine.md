@@ -49,7 +49,7 @@ return formRepository.getPageById(pageId);
 ```
 
 
-Integrations can be attached to [Service Tasks]  which are automatically executed while the service is querying for the next User Task. These tasks can be mapped to a [Java Delegate](https://docs.camunda.org/manual/7.20/user-guide/process-engine/delegation-code/#java-delegate) that will be responsible for making REST requests or executing AWS lambdas, and map the results back into the process variables in the instance.
+Integrations can be attached to [Service Tasks](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/service-task/)  which are automatically executed while the service is querying for the next User Task. These tasks can be mapped to a [Java Delegate](https://docs.camunda.org/manual/7.20/user-guide/process-engine/delegation-code/#java-delegate) that will be responsible for making REST requests or executing AWS lambdas, and map the results back into the process variables in the instance.
 
 
 # Drawbacks
@@ -62,23 +62,19 @@ Considerations to make:
 
 ## Alternatives
 
-Flowable:
+##### Flowable
 - Works very similarly to Camunda (and was in fact created by some of Camunda's developers)
 - Has more support for tying in Java executables to process definitions
 
-The automations  
-## Potential Impact and Dependencies
+The automations team is currently using camunda to orchestrate automations for our customers. Since Flowable is such a similar product, it didn't make much sense to us to use it as using consistent tooling could make it easier to tie the products together in the future.
 
-*Here, we aim to be mindful of our environment and generate empathy towards others who may be impacted by our decisions.*
+##### Spring State Machine
+- First class Spring Boot support
+- Simple API for interacting with states
 
-- *What other systems or teams are affected by this proposal?*
-- *How could this be exploited by malicious attackers?*
+Using Spring State Machine would grant a lot of flexibility in how forms are interacted with, however states are defined in code only. This library is more general purpose than for powering workflows, so there would be a need for more underlying custom logic, which wouldn't be as much as an improvement for maintaining complex state management code.
 
 ## Unresolved questions
 
-*What parts of the proposal are still being defined or not covered by this proposal?*
-
-## Conclusion
-
-*Here, we briefly outline why this is the right decision to make at this time and move forward!*
-
+- What format should the pages use for rendering data? This should be something something that could be deserialized into Java objects for validation purposes.
+- Should page data be embedded in the form definitions or separately in its own table, and side-by-side with the BPMN in the deployment request?
