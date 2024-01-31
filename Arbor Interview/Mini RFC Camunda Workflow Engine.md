@@ -1,5 +1,5 @@
 
-# RFC: Camunda Workflow Engine
+# Mini-RFC: Camunda Workflow Engine
 
 **Authors:**
 
@@ -77,4 +77,5 @@ Using Spring State Machine would grant a lot of flexibility in how forms are int
 ## Unresolved questions
 
 - What format should the pages use for rendering data? This should be something something that could be deserialized into Java objects for validation purposes.
+	- [JSONForms](https://jsonforms.io/) is being considered for this purpose
 - Should page data be embedded in the form definitions or separately in its own table, and side-by-side with the BPMN in the deployment request?

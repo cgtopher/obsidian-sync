@@ -57,8 +57,11 @@ CREATE TABLE sequences(
 
 On creation a row in `forms` is added with an initial BPMN, representing a process with no tasks. The rest of the resources are behind respective REST endpoints under `/forms`, which are called whenever a change happens to the form on the frontend, ie. dropping a node on the grid or creating/updating a page. The reasoning behind treating all of the components as separate resources is that it allows the frontend to handle all of the components individually. This makes it easier to have separate screens for building the flow, creating a page in the page builder, and defining an integration point in a service task,  and makes it the application as a whole more extensible. 
 
+
 ### Graph Endpoints
 All endpoints for forms, tasks, and sequences return a `FormResponse` which describes the current state of the form, so the frontend can re-render and always be up-to-date with the server, particularly in that case a request to add a resource fails.
+
+![[claimformcreator-Form Designer.drawio.png]]
 
 **Form Response:***
 ```JSON
