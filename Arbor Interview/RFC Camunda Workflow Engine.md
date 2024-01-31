@@ -10,35 +10,63 @@
 
 ## Background
 
-Historically in this company, a home-brewed rules engine has been used along with a Json form definition that would be evaluated along with a context object on call to the service `POST /form/<uuid>` . While this solution works to power the forms our customers currently use, there are a number of issues with it.
+Historically in this company, a home-brewed rules engine has been used to power the decision making around the paths the forms would travel.  It uses Json form definitions that would be evaluated along with context objects on each call to the service (submitting answers to a page) behind a single endpoint to determine the next page a customer would be shown . While this solution works to power the forms our customers currently use, there are a number of issues with it.
 
-- The service has no real concept as to where data is located in state, as a result it must send the entire context in body of requests to integrations, leaving the responsibility of figuring out the state of the form and what data is available to the receiving services/functions, resulting in buggy and difficult to test code
+- The service has no real concept as to where data is located in state, as a result it must send the entire serialized context object to integrations, leaving the responsibility of figuring out the state of the form and what data is available to the receiving services/functions, resulting in buggy and difficult to test code
+- There is no good way to query forms in progress, it often requires scripting to get a clear picture. Which isn't ideal particularly for monitoring 
 - These context evaluations, once a form is large enough, become expensive operations as the service would have to fetch and process the whole definition, which introduces latency
-- As customer requests become more complex, issues with the state management are more frequently found and difficult to debug
 
 Camunda's workflow engine helps to address these concerns
-- 
+- The engine has the concept of [Process Variables](https://docs.camunda.org/manual/latest/user-guide/process-engine/variables/) and provides a Java API for querying them. These variables are scoped to the [Process Instances](https://docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-concepts/#process-instances) and will make it possible to map data across pages and into integration points
+- Above mentioned Process Instances are also easily queryable through the Java API, for which endpoints could be stood up to monitor instances in flight.
+- It has a long development history with many enhancements for performance and reliability
 ## Proposed Implementation
 
+The workflow engine accepts BPMN, which can be expressed both as XML or in code through the [builder api](https://docs.camunda.org/manual/latest/user-guide/model-api/bpmn-model-api/create-a-model/), to create [Process Definitions](https://docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-concepts/#process-definitions). A form designer service will be made to create these definitions, attaching page rendering data to [User Tasks](https://docs.camunda.org/manual/7.20/reference/bpmn20/tasks/user-task/) (basically a unit of work that waits for an interaction before proceeding to the next task).
 
-*Consider:*
+A workflow service will be created to manage the interactions between the customer and the engine. The service will query for the next task, and return the data to be rendered by the front end. Once a new submission comes in for the form, it will submit the data for that page, which kicks off the next task. 
 
-- *using diagrams to help illustrate your ideas.*
-- *including code examples if you're proposing an interface or system contract.*
-- *linking to project briefs or wireframes that are relevant.*
+In simplified terms, the code for creating an instance and fetching the data to render the page would look like this:
 
-## Metrics & Dashboards
+```Java
+// Create new process instance based on id which could be mapped from a slug  
+RuntimeService runtimeService = engine.getRuntimeService();  
+ProcessInstance instance = runtimeService
+    .createProcessInstanceById("<Form Definition ID>").execute();  
+return instance.getProcessInstanceId();  
+  
+  
+/*  
+ Query for the task by the process instance ID, an ID can be stored in the  task's "formKey" field which is placed by default by Camunda 
+*/
+TaskService taskService = engine.getTaskService();
+Task task = taskService.createTaskQuery()
+    .processInstanceId(instance.getProcessInstanceId())
+    .singleResult();
 
-*What are the main metrics we should be measuring? For example, when interacting with an external system, it might be the external system latency. When adding a new table, how fast would it fill up?*
+UUID pageId = UUID.fromString(task.getFormKey());  
+return formRepository.getPageById(pageId);
+```
 
-## Drawbacks
 
-*Are there any reasons why we should not do this? Here we aim to evaluate risk and check ourselves.*
+Integrations can be attached to [Service Tasks]  which are automatically executed while the service is querying for the next User Task. These tasks can be mapped to a [Java Delegate](https://docs.camunda.org/manual/7.20/user-guide/process-engine/delegation-code/#java-delegate) that will be responsible for making REST requests or executing AWS lambdas, and map the results back into the process variables in the instance.
+
+
+# Drawbacks
+
+Since the service task execution will happen while a thread is held open to query for the next task, the Java delegates will need to carefully handle timeouts and exceptions. If there are too many concurrent service tasks running, it could risk slowing interactions with the workflow engine and cause latency or potential server crashes.
+
+Considerations to make:
+- Extra monitoring for execution time, number of service tasks running, as well as overall request latency
+- Thinking through async approaches, to perhaps send an event from the server when the next page is ready, rather than holding the connection open
 
 ## Alternatives
 
-*What are other ways of achieving the same outcome?*
+Flowable:
+- Works very similarly to Camunda (and was in fact created by some of Camunda's developers)
+- Has more support for tying in Java executables to process definitions
 
+The automations  
 ## Potential Impact and Dependencies
 
 *Here, we aim to be mindful of our environment and generate empathy towards others who may be impacted by our decisions.*
