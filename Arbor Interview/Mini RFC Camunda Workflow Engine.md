@@ -64,15 +64,19 @@ For now configuring the K8's deployment such that it autoscales at a relatively 
 
 ## Alternatives
 
-##### [Flowable](https://www.flowable.com/)
+##### Flowable
 - Works very similarly to Camunda (and was in fact created by some of Camunda's developers)
 - Has more support for tying in Java executables to process definitions
 
+[Flowable Docs]](https://documentation.flowable.com/latest/?_gl=1*10qw47*_ga*MTY1Njk2MjA2MC4xNzA2NjY3MTk5*_ga_16FH60X0R3*MTcwNjc0NTM1OC4yLjAuMTcwNjc0NTM1OC42MC4wLjA.)
+
 The automations team is currently using Camunda to orchestrate automations for customers. Since Flowable is such a similar product, it doesn't make much sense to use it as consistent tooling should make it easier to tie the products together in the future.
 
-##### [Spring State Machine](https://spring.io/projects/spring-statemachine)
+##### Spring State Machine
 - First class Spring Boot support
 - Simple API for interacting with states
+
+[Spring State Machine Docs](https://spring.io/projects/spring-statemachine)
 
 Using Spring State Machine would grant a lot of flexibility in how forms are interacted with, however states are defined in code only, so is not as easily serializable. This library is also more general purpose than for just powering workflows, so there would be a need for more underlying custom logic, adding complexity and hurting maintainability. 
 
