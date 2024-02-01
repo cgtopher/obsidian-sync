@@ -68,7 +68,7 @@ For now configuring the K8's deployment such that it autoscales at a relatively 
 - Works very similarly to Camunda (and was in fact created by some of Camunda's developers)
 - Has more support for tying in Java executables to process definitions
 
-[Flowable Docs]](https://documentation.flowable.com/latest/?_gl=1*10qw47*_ga*MTY1Njk2MjA2MC4xNzA2NjY3MTk5*_ga_16FH60X0R3*MTcwNjc0NTM1OC4yLjAuMTcwNjc0NTM1OC42MC4wLjA.)
+[Flowable Docs](https://documentation.flowable.com/latest/?_gl=1*10qw47*_ga*MTY1Njk2MjA2MC4xNzA2NjY3MTk5*_ga_16FH60X0R3*MTcwNjc0NTM1OC4yLjAuMTcwNjc0NTM1OC42MC4wLjA.)
 
 The automations team is currently using Camunda to orchestrate automations for customers. Since Flowable is such a similar product, it doesn't make much sense to use it as consistent tooling should make it easier to tie the products together in the future.
 
