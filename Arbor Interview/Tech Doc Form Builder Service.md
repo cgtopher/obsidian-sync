@@ -155,4 +155,4 @@ Adds page rendering data to a task, it accepts a JSON schema that describes the 
 }
 ```
 
-Creates a service execution for a task. Service types are tied to [Java Delegates](https://docs.camunda.org/manual/7.20/user-guide/process-engine/delegation-code/#java-delegate) that are executed when the task is reached. It currently only supports flat objects being returned, complex types are planned to be supported in the future.
+Creates a service execution for a task. Service types are tied to [Java Delegates](https://docs.camunda.org/manual/7.20/user-guide/process-engine/delegation-code/#java-delegate) that are executed when the task is reached. The `variables` and `returns` fields describe the shape of I/O for the integration point. Claims Form Service has the concept of `Data Tags` which are essentially pointers to locations of data in a form. This is out of the scope of this doc, since it really needs one of it's own.

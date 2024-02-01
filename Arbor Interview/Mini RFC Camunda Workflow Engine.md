@@ -54,28 +54,30 @@ Integrations can be attached to [Service Tasks](https://docs.camunda.org/manual/
 
 # Drawbacks
 
-Since the service task execution will happen while a thread is held open to query for the next task, the Java delegates will need to carefully handle timeouts and exceptions. If there are too many concurrent service tasks running, it could risk slowing interactions with the workflow engine and cause latency or potential server crashes.
+Since the service task execution will happen while a thread is held open to query for the next task, the Java delegates will need to carefully handle timeouts and exceptions. If there are too many concurrent service tasks running, it could hog system resources and risk increased latency overall.
 
 Considerations to make:
 - Extra monitoring for execution time, number of service tasks running, as well as overall request latency
 - Thinking through async approaches, to perhaps send an event from the server when the next page is ready, rather than holding the connection open
 
+For now configuring the K8's deployment such that it autoscales at a relatively low cpu utilization threshold, should provide some reduction in impact of bursts of traffic.  
+
 ## Alternatives
 
-##### Flowable
+##### [Flowable](https://www.flowable.com/)
 - Works very similarly to Camunda (and was in fact created by some of Camunda's developers)
 - Has more support for tying in Java executables to process definitions
 
-The automations team is currently using camunda to orchestrate automations for our customers. Since Flowable is such a similar product, it didn't make much sense to us to use it as using consistent tooling could make it easier to tie the products together in the future.
+The automations team is currently using Camunda to orchestrate automations for customers. Since Flowable is such a similar product, it doesn't make much sense to use it as consistent tooling should make it easier to tie the products together in the future.
 
-##### Spring State Machine
+##### [Spring State Machine](https://spring.io/projects/spring-statemachine)
 - First class Spring Boot support
 - Simple API for interacting with states
 
-Using Spring State Machine would grant a lot of flexibility in how forms are interacted with, however states are defined in code only. This library is more general purpose than for powering workflows, so there would be a need for more underlying custom logic, which wouldn't be as much as an improvement for maintaining complex state management code.
+Using Spring State Machine would grant a lot of flexibility in how forms are interacted with, however states are defined in code only, so is not as easily serializable. This library is also more general purpose than for just powering workflows, so there would be a need for more underlying custom logic, adding complexity and hurting maintainability. 
 
 ## Unresolved questions
 
 - What format should the pages use for rendering data? This should be something something that could be deserialized into Java objects for validation purposes.
-	- [JSONForms](https://jsonforms.io/) is being considered for this purpose
+	- [JSONForms](https://jsonforms.io/) is being considered for this purpose as there are Java libraries for interacting with JSON schema, which it operates on 
 - Should page data be embedded in the form definitions or separately in its own table, and side-by-side with the BPMN in the deployment request?
