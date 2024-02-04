@@ -59,11 +59,11 @@ On creation a row in `forms` is added with an initial BPMN, representing a proce
 
 
 ### Graph Endpoints
-All endpoints for forms, tasks, and sequences return a `FormResponse` which describes the current state of the form, so the frontend can re-render and always be up-to-date with the server, particularly in that case a request to add a resource fails.
+All endpoints for forms, tasks, and sequences return a `FormResponse` which describes the current state of the form, so the frontend can re-render and always be up-to-date with the server, particularly in the case a request to add a resource fails.
 
 ![[claimformcreator-Form Designer.drawio.png]]
 
-**Form Response:***
+**Form Response:**
 ```JSON
 {  
   "id": "uuid",  

@@ -13,8 +13,7 @@
 Historically in this company, a home-brewed rules engine has been used to power the decision making around the paths the forms would travel.  It uses Json form definitions that would be evaluated along with context objects on each call to the service (submitting answers to a page) behind a single endpoint to determine the next page a customer would be shown . While this solution works to power the forms our customers currently use, there are a number of issues with it.
 
 - The service has no real concept as to where data is located in state, as a result it must send the entire serialized context object to integrations, leaving the responsibility of figuring out the state of the form and what data is available to the receiving services/functions, resulting in buggy and difficult to test code
-- There is no good way to query forms in progress, it often requires scripting to get a clear picture. Which isn't ideal particularly for monitoring 
-- These context evaluations, once a form is large enough, become expensive operations as the service would have to fetch and process the whole definition, which introduces latency
+- There is no good way to query forms in progress, it often requires scripting to get a clear picture. Which isn't ideal particularly for monitoring  - These context evaluations, once a form is large enough, become expensive operations as the service would have to fetch and process the whole definition, which introduces latency
 
 Camunda's workflow engine helps to address these concerns
 - The engine has the concept of [Process Variables](https://docs.camunda.org/manual/latest/user-guide/process-engine/variables/) and provides a Java API for querying them. These variables are scoped to the [Process Instances](https://docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-concepts/#process-instances) and will make it possible to map data across pages and into integration points
