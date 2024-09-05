@@ -20,6 +20,18 @@
             }
           },
           {
+            "id": "062c308a0b1f4fd7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "91a75d45ebbd118c",
             "type": "leaf",
             "state": {
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Arbor Interview/Mini RFC Camunda Workflow Engine.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Arbor Interview/Mini RFC Camunda Workflow Engine.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Arbor Interview/Mini RFC Camunda Workflow Engine.md"
+                "file": "README.md"
               }
             }
           }
@@ -160,48 +172,19 @@
       "webpage-html-export:Export Vault to HTML": false
     }
   },
-  "floating": {
-    "id": "89dc25c4125c8bac",
-    "type": "floating",
-    "children": [
-      {
-        "id": "c8a5dbfc99979b41",
-        "type": "window",
-        "children": [
-          {
-            "id": "649f2def3f598e40",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "ae3549c3e3f893dd",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "Arbor Interview/Mini RFC Camunda Workflow Engine.md",
-                    "mode": "preview",
-                    "source": false
-                  }
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 830,
-        "y": 1075,
-        "width": 800,
-        "height": 400,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "ae3549c3e3f893dd",
+  "active": "062c308a0b1f4fd7",
   "lastOpenFiles": [
-    "Arbor Interview/index.md",
-    "Arbor Interview/Tech Doc Form Builder Service.md",
+    "Screenshot 2024-09-05 at 2.51.34 PM.png",
+    "Screenshot 2024-09-05 at 9.39.18 AM.png",
+    "README.md",
+    "Screenshot 2024-09-05 at 2.52.36 PM.png",
+    "Screenshot 2024-09-05 at 2.51.43 PM.png",
     "Test Note.md",
+    "Pasted image 20240130160226.jpg",
+    "Screenshot 2024-09-05 at 2.47.03 PM.png",
+    "Arbor Interview/index.md",
+    "Arbor Interview/Mini RFC Camunda Workflow Engine.md",
+    "Arbor Interview/Tech Doc Form Builder Service.md",
     "().md",
     "RFC.md",
     "Arbor Interview/RFC Camunda Workflow Engine.md",
@@ -215,7 +198,6 @@
     "drawio/testdiagram",
     "drawio",
     "share/Test Note.html",
-    "share",
-    "Pasted image 20240130160226.jpg"
+    "share"
   ]
 }
